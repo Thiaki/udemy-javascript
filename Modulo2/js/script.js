@@ -1,3 +1,4 @@
+// Funções
 function escreva(texto){
     document.write(texto);
     document.write("<br>");
@@ -39,3 +40,5 @@ escreva("Usuário clicou em: " + booleanApagar);
 
 let nome = prompt("Digite seu nome:"); // Caixa de digitação para o usuário
 escreva("Nome do usuário é: " + nome);
+
+/* -------------- */
