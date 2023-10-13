@@ -25,6 +25,7 @@ const numero1 = 100; // Variável que não pode mudar seu valor
 const numero2 = parseFloat("10.54"); // Transformando a string para um float
 
 console.log(typeof numero2); // Mostra o tipo da variável (string, number, boolean, undefined, null)
+console.log(Number.isInteger(numero1)); // Retorna true ou false para se esse numdero for inteiro ou não
 
 // Exibindo as operações
 soma();
