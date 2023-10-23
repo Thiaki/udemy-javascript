@@ -1,8 +1,25 @@
 function main() {
+    
+    // FUNÇÕES
+    const removerClasseResultado = () => resultado.classList.remove((resultado.classList).item(resultado.classList - 1));
+
+    const exibirResultado = (texto, imc, resultadoImc, classname) => {
+        if (imc == 0 || resultadoImc == 0){
+        resultado.innerHTML = texto;
+
+        }
+        else{
+            resultado.innerHTML = texto + imc + " " + resultadoImc;
+        }
+        removerClasseResultado();
+        resultado.classList.add(classname);
+    }
+    // ------- //
+
     const formulario = document.querySelector("#formulario");
     const resultado = document.querySelector("#sucesso-erro");
     const regexNumerica = /^[0-9]*$/;
-    let resultadoImc
+    let resultadoImc;
     
     formulario.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -30,28 +47,18 @@ function main() {
         else if (imc > 40){
             resultadoImc = "Obesidade grau 3";
         }
-    
-        const removerClasseResultado = () => resultado.classList.remove((resultado.classList).item(resultado.classList - 1)); 
         
         if (imc > 0){
-            resultado.innerHTML = `Seu IMC é ${imc} (${resultadoImc})`;
-            removerClasseResultado();
-            resultado.classList.add("sucesso");
+            exibirResultado("Seu IMC é ", imc, resultadoImc, "sucesso");
         }
         else if (!regexNumerica.test(altura) && !regexNumerica.test(peso)){
-            resultado.innerHTML = "Peso e Altura Inválidas";
-            removerClasseResultado();
-            resultado.classList.add("erro");
+            exibirResultado("Peso e Altura Inválidas ", 0, 0, "erro");
         }
         else if (!regexNumerica.test(altura)){
-            resultado.innerHTML = "Altura Inválida";
-            removerClasseResultado();
-            resultado.classList.add("erro");
+            exibirResultado("Altura Inválida ", 0, 0, "erro");
         }
         else if (!regexNumerica.test(peso)){
-            resultado.innerHTML = "Peso Inválido";
-            removerClasseResultado();
-            resultado.classList.add("erro");
+            exibirResultado("Peso Inválido ", 0, 0, "erro");
         }   
     
     })
