@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Readex Pro', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: cornflowerblue;
+    color: aliceblue;
+}
+
+.container{
+    text-align: center;
+}
+
+#timer{
+    font-size: 42px;
+}
+
+button{
+    min-width: 80px;
+    color: black;
+    background-color: aliceblue;
+    border: none;
+    border-radius: 8px;
+    padding: 5px 10px;
+    margin: 0 5px;
+    cursor: pointer;
+}
