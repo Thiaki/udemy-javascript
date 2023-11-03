@@ -1,0 +1,22 @@
+@import url('https://fonts.googleapis.com/css2?family=Readex+Pro:wght@200;300;400;500;600;700&display=swap');
+
+*{
+    font-family: 'Readex Pro', sans-serif;
+    box-sizing: border-box;
+}
+
+body{
+    background-color: navy;
+}
+
+.container{
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: aliceblue;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.btn-apagar{
+    margin: 0 15px;
+}

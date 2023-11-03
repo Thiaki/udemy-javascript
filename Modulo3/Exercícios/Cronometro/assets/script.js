@@ -1,37 +1,40 @@
-function mostrarTempo(){
-    let cronometro = new Date();
-    cronometro.setHours(0);
-    cronometro.setMinutes(0);
-    cronometro.setSeconds(0);
-    timer.textContent = cronometro.toLocaleTimeString();
+function criarHoraSegundos(milisegundos){
+    const segundos = milisegundos * 1000;
+    const date = new Date(segundos);
+    return date.toLocaleTimeString('pt-BR', {
+        hour12: false,
+        timeZone: 'UTC'
+    });
 }
 
-function iniciar(){
-    botaoIniciar.addEventListener('click', (e) => {
-        setInterval((a) => timer.textContent = mostrarTempo(), 1000)
-    })
-}
-
-function pausar() {
-    botaoPausar.addEventListener('click', (e) => {
-        setInterval((a) => mostrarTempo(), 1000)
-        timer.style.color = "red";
-    })
-}
-
-function zerar() {
-    botaoZerar.addEventListener('click', (e) => {
-        clearInterval(iniciar());
-    })
-}
-
-
-const timer = document.querySelector("#timer");
+const relogio = document.querySelector("#timer");
 const botaoIniciar = document.querySelector("#iniciar");
 const botaoPausar = document.querySelector("#pausar");
 const botaoZerar = document.querySelector("#zerar");
+let segundos = 0;
+let timer;
 
-mostrarTempo();
-iniciar();
-pausar();
-zerar();
+function iniciarRelogio(){
+    timer = setInterval(() => {
+        segundos++
+        relogio.innerHTML = criarHoraSegundos(segundos);
+    }, 1000);
+}
+
+botaoIniciar.addEventListener('click', (e) => {
+    clearInterval(timer);
+    iniciarRelogio();
+    relogio.style.color = "white";
+})
+
+botaoPausar.addEventListener('click', (e) => {
+    clearInterval(timer);
+    relogio.style.color = "red";
+})
+
+botaoZerar.addEventListener('click', (e) => {
+    clearInterval(timer);
+    relogio.textContent = '00:00:00';
+    segundos = 0;
+    relogio.style.color = "white";
+})
