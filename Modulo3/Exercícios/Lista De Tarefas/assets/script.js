@@ -17,7 +17,7 @@ function adicionarTarefa() {
     if (tarefa.value !== ""){
         criarTarefa(tarefa.value);
         limparInput();
-        arrayLista()
+        arrayLista();
     }
     else {
         alert("Tarefa Vazia");
@@ -30,6 +30,7 @@ function apagarTarefa() {
         const el = e.target;
         if (el.classList.contains('btn-apagar')){
             el.parentElement.remove();
+            arrayLista();
         }
     })
 }
@@ -42,6 +43,19 @@ function arrayLista() {
         let tarefaTexto = tarefa.textContent;
         tarefaTexto = tarefaTexto.replace('Remover Tarefa', '');
         lista.push(tarefaTexto);
+    }
+    // Convertendo um array javascript para uma string JSON
+    const tarefaJSON = JSON.stringify(lista);
+    // Guarda no localStorage o array lista e coloca o nome de tarefas para poder chamar depois
+    localStorage.setItem('tarefas', tarefaJSON);
+}
+
+function recuperaTarefas() {
+    const tarefas = localStorage.getItem('tarefas');
+    const lista = JSON.parse(tarefas);
+    
+    for(let tarefas of lista){
+        criarTarefa(tarefa);
     }
 }
 
@@ -64,3 +78,4 @@ tarefa.addEventListener('keypress', (e) => {
 })
 
 apagarTarefa();
+recuperaTarefas();
